@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">QuizApp</string>
+
+    <string-array name="lits_lever">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </string-array>
+    <string-array name="lits_style">
+        <item>ABC</item>
+        <item>TEXT</item>
+    </string-array>
+
+    <string name="close_app">Close app</string>
+    <string name="dialog_message">AlerDialog</string>
+    <string name="dialog_title">GBAndroidBlogs</string>
+    <string name="success">Success</string>
+    <string name="warning">Warning</string>
+    <string name="error">Error</string>
+
+    <string name="success_title">Success Title</string>
+    <string name="warning_title">Warning Title</string>
+    <string name="error_title">Error Title</string>
+    <string name="dummy_text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</string>
+    <string name="okay">Okay</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+</resources>
