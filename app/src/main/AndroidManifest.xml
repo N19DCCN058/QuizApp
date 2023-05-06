@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -26,16 +27,51 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".NewQuestion"
-            android:parentActivityName=".MainActivity" />
+            android:name=".HistoryWatchingActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
-            android:name=".DetailQuestion"
-            android:parentActivityName=".MainActivity" />
+            android:name=".HomeActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".AnsweringFinishActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".SelectedLevelActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".QuestionAnsweringActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".LoginActivity"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".SignupActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".NewQuestion"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".DetailQuestion"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"

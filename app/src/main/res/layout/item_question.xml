@@ -1,45 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     android:id="@+id/layoutItemQS"
-    android:layout_margin="2dp">
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:layout_marginEnd="10dp"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/custom_background_item_qs"
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tvNumbId"
-        android:layout_width="50dp"
-        android:layout_height="match_parent"
-        android:text="#1"
-        android:textColor="#FF3D00"
-        android:textSize="25dp"
-        android:textStyle="bold|italic"
-        android:textAlignment="center"
-        android:gravity="center"/>
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <TextView
-            android:id="@+id/tvTitle"
+        android:layout_marginTop="5dp">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="25dp"
-            android:layout_centerInParent="true"
-            android:layout_toEndOf="@+id/tvNumbId"
-            android:text="Nguyen Van Hieu"
-            android:textSize="24dp"
-            android:layout_gravity="center"
-            android:textColor="@color/white"/>
+            android:layout_height="70dp"
+            android:layout_marginStart="40dp"
+            android:background="@drawable/custom_background_item_qs_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="15dp"
+                android:layout_toEndOf="@+id/tvNumbId"
+                android:text="Nguyen Van Hieu"
+                android:textColor="@color/black"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/tvLever"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="25dp"
+                android:layout_toEndOf="@+id/tvNumbId"
+                android:text="Lever 1"
+                android:textColor="#F44336"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
         <TextView
-            android:id="@+id/tvLever"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_centerInParent="true"
-            android:layout_toEndOf="@+id/tvNumbId"
-            android:text="Lever 1"
-            android:textStyle="bold"
-            android:textSize="12dp"
-            android:layout_gravity="center"
-            android:textColor="#4CFF00"/>
-    </LinearLayout>
+            android:id="@+id/tvNumbId"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="15dp"
+            android:background="@drawable/custom_background_item_qs_id"
+            android:gravity="center"
+            android:text="#1"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold|italic" />
+    </FrameLayout>
 
 </LinearLayout>

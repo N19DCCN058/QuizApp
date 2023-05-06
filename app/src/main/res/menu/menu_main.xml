@@ -33,6 +33,10 @@
         android:icon="@drawable/ic_baseline_add_circle_outline_24"
         android:id="@+id/btnAdd_tb"/>
     <item
+        android:title="Sign out"
+        android:icon="@drawable/ic_baseline_logout_24"
+        android:id="@+id/btnSignOut_tb"/>
+    <item
         android:title="Exit"
         android:icon="@drawable/ic_baseline_exit_to_app_24"
         android:id="@+id/btnExit_tb"/>

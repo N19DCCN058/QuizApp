@@ -2,6 +2,9 @@ package com.ptithcm.quizapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,7 +27,7 @@ public class SignupActivity<SignUpActivity> extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         signupEmail = findViewById(R.id.signup_email);
         signupPassword = findViewById(R.id.signup_password);
         signupButton = findViewById(R.id.Signup_button);
@@ -58,6 +61,16 @@ public class SignupActivity<SignUpActivity> extends AppCompatActivity {
         });
 
 
+    }
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_login_signup, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        System.exit(1);
+        return true;
     }
 
     private boolean creattAcc(String user, String pass) {

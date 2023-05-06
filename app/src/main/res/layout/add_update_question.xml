@@ -4,12 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_app"
+    android:background="@color/black"
     android:orientation="vertical"
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
     tools:context=".MainActivity">
     <!--    <include-->
     <!--        layout="@layout/actionbar_add_qs" />-->
+    <ProgressBar
+        android:id="@+id/proLoading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="invisible"
+        />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,7 +26,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@drawable/custom_background_card">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -30,11 +38,13 @@
                     android:id="@+id/edtContent"
                     android:layout_width="330dp"
                     android:layout_height="60dp"
-                    android:layout_marginRight="5dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
                     android:hint="Content..."
                     android:lines="1"
-                    android:textColor="@color/white" />
-<!--                android:windowSoftInputMode="stateAlwaysHidden"-->
+                    android:textColor="@color/colorWhite"
+                    android:background="@drawable/custom_background_edt_qs_content"/>
+                <!--                android:windowSoftInputMode="stateAlwaysHidden"-->
 
                 <ImageView
                     android:id="@+id/imgAddImage"
@@ -56,29 +66,32 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="32dp"
-                android:gravity="center"
-                android:layout_marginTop="10dp" >
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:gravity="center">
 
 
                 <Spinner
                     android:id="@+id/spnLever"
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_width="100dp"
+                    android:layout_height="30dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/custom_background_spn"
+                    android:dropDownWidth="100dp"
                     android:entries="@array/lits_lever"
-                    android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-
-                    android:background="@drawable/bg_spinner" />
+                    android:popupBackground="#4CAF50"
+                    android:animateLayoutChanges="true" />
 
                 <Spinner
-                    android:id="@+id/spnStyle"
-                    android:layout_width="90dp"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/spnType"
+                    android:layout_width="100dp"
+                    android:layout_height="30dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/custom_background_spn"
+                    android:dropDownWidth="100dp"
                     android:entries="@array/lits_style"
-                    android:layout_marginLeft="10dp"
-                    android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-                    android:background="@drawable/bg_spinner" />
+                    android:popupBackground="#4CAF50"
+                    android:animateLayoutChanges="true" />
             </LinearLayout>
 
 
@@ -95,7 +108,9 @@
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
                 android:maxHeight="200dp"
-                android:scaleType="fitXY" />
+                android:scaleType="fitXY"
+                android:adjustViewBounds="true"
+                android:visibility="gone" />
 
             <ImageView
                 android:id="@+id/imgDeleteImage"
@@ -109,8 +124,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
 
             <RadioGroup
                 android:id="@+id/radioGroup"
@@ -121,31 +136,36 @@
                 <RadioButton
                     android:id="@+id/rbtnCorrect1"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="13dp"/>
 
                 <RadioButton
                     android:id="@+id/rbtnCorrect2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:visibility="gone" />
+                    android:visibility="gone"
+                    android:layout_marginBottom="13dp"/>
 
                 <RadioButton
                     android:id="@+id/rbtnCorrect3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:visibility="gone" />
+                    android:visibility="gone"
+                    android:layout_marginBottom="13dp"/>
 
                 <RadioButton
                     android:id="@+id/rbtnCorrect4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:visibility="gone" />
+                    android:visibility="gone"
+                    android:layout_marginBottom="13dp"/>
 
                 <RadioButton
                     android:id="@+id/rbtnCorrect5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:visibility="gone" />
+                    android:visibility="gone"
+                    android:layout_marginBottom="13dp"/>
 
                 <RadioButton
                     android:id="@+id/rbtnCorrect6"

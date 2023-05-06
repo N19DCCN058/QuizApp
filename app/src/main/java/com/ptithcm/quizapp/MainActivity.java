@@ -1,57 +1,49 @@
 package com.ptithcm.quizapp;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.provider.Settings;
+import android.os.Handler;
+import android.util.AttributeSet;
+import android.view.InflateException;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.ptithcm.quizapp.adapter.CustomAdapterQuestion;
+import com.ptithcm.quizapp.database.DBHelper;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.Collections;
+import java.lang.reflect.Field;
 
 public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private DatabaseReference mDatabase;
     private SearchView svSearch_tb;
-    private String dbName = "QuizAppDB.db";
     private SQLiteDatabase database = null;
     private String currentSort = "questionID";
+    private DBHelper dbHelper;
 
-    CustomAlertDialog alertDialog;
     FloatingActionButton fabAddNewQS;
     RecyclerView rvListQS;
-    ArrayList<question> data_QS = new ArrayList<>();
     CustomAdapterQuestion adapterQS;
     SwipeRefreshLayout srfRefresh;
 
@@ -68,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
+        inflater.inflate(R.menu.menu_main, menu);
         svSearch_tb = (SearchView) menu.findItem(R.id.svSearch_tb).getActionView();
         svSearch_tb.setQueryHint("Search Here....");
         svSearch_tb.setMaxWidth(Integer.MAX_VALUE);
@@ -76,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 adapterQS.getFilter().filter(query);
-
                 return false;
             }
 
@@ -90,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setEvent() {
-        khoitao();
+        copyData();
         getData(currentSort);
         fabAddNewQS.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,34 +100,28 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getData(String currentSort) {
-        data_QS.clear();
-        Cursor cursor = database.rawQuery("SELECT * FROM Questions ORDER BY " + currentSort, null);
-        while (cursor.moveToNext()) {
-            data_QS.add(new question(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4)));
-        }
-        adapterQS = new CustomAdapterQuestion(this, data_QS, database);
+        adapterQS = new CustomAdapterQuestion(this, dbHelper.getListQuestion(currentSort));
         rvListQS.setAdapter(adapterQS);
-        cursor.close();
         adapterQS.notifyDataSetChanged();
     }
 
     private void setControl() {
-//        toolbar = findViewById(R.id.toolbarMain);
-//        setSupportActionBar(toolbar);
-        alertDialog = new CustomAlertDialog(MainActivity.this);
         rvListQS = findViewById(R.id.rvListQS);
         fabAddNewQS = findViewById(R.id.fabtbAdd);
         srfRefresh = findViewById(R.id.srfRefresh);
+        dbHelper = new DBHelper(this);
     }
 
-    private void khoitao() {
-        File dbFile = getDatabasePath(dbName);
+    private void copyData() {
+        dbHelper.getReadableDatabase();
+        File dbFile = getDatabasePath(dbHelper.DBNAME);
         if (dbFile.exists()) {
-            dbFile.delete();
+//            dbFile.delete();
+            return;
         }
         try {
-            InputStream myInput = getAssets().open(dbName);
-            String outFile = getApplicationInfo().dataDir + "/databases/" + dbName;
+            InputStream myInput = getAssets().open(dbHelper.DBNAME);
+            String outFile = getApplicationInfo().dataDir + "/databases/" + dbHelper.DBNAME;
             File f = new File(getApplicationInfo().dataDir + "/databases/");
             if (!f.exists()) {
                 f.mkdir();
@@ -154,25 +139,20 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
             Toast.makeText(this, "Loi sao chep DB!", Toast.LENGTH_SHORT).show();
         }
-        database = openOrCreateDatabase(dbName, MODE_PRIVATE, null);
+        database = openOrCreateDatabase(dbHelper.DBNAME, MODE_PRIVATE, null);
 
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        Intent intent = new Intent();
         switch (item.getItemId()) {
             case R.id.btnExit_tb:
-                View view = LayoutInflater.from(MainActivity.this).inflate(R.layout.layout_warning_dailog,null);
-                view.findViewById(R.id.buttonYes).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        finish();
-                    }
-                });
-                alertDialog.showWarningDialog(view);
-
-//
-//                System.exit(1);
+                adapterQS.showWarningDialog(MainActivity.this.getResources().getString(R.string.exit));
+                break;
+            case R.id.btnSignOut_tb:
+                intent = new Intent(MainActivity.this, Welcome.class);
+                startActivity(intent);
                 break;
             case R.id.btnSortByID: {
                 currentSort = "questionID";
@@ -190,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             }
             case R.id.btnAdd_tb: {
-                Intent intent = new Intent(MainActivity.this, NewQuestion.class);
+                intent = new Intent(MainActivity.this, NewQuestion.class);
                 startActivity(intent);
                 break;
             }

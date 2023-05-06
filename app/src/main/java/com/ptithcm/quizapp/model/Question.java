@@ -1,23 +1,29 @@
-package com.ptithcm.quizapp;
+package com.ptithcm.quizapp.model;
+
+import android.graphics.Bitmap;
+
+import androidx.annotation.NonNull;
 
 import java.io.Serializable;
 
-public class question implements Comparable<question>, Serializable {
+public class Question implements Serializable {
     public String questionID;
     public String questionContent;
     public String questionType;
     public String questionLevel;
     public String exactAnswer;
+    public Bitmap questionImage;
 
-    public question(String questionID, String questionContent, String questionType, String questionLevel, String exactAnswer) {
+    public Question(String questionID, String questionContent, String questionType, String questionLevel, String exactAnswer, Bitmap questionImage) {
         this.questionID = questionID;
         this.questionContent = questionContent;
         this.questionType = questionType;
         this.questionLevel = questionLevel;
         this.exactAnswer = exactAnswer;
+        this.questionImage = questionImage;
     }
 
-    public question() {
+    public Question() {
     }
 
     public String getQuestionID() {
@@ -60,8 +66,29 @@ public class question implements Comparable<question>, Serializable {
         this.exactAnswer = exactAnswer;
     }
 
+    public void setQuestionImage(Bitmap questionImage) {
+        this.questionImage = questionImage;
+    }
+
+    public Bitmap getQuestionImage() {
+        return questionImage;
+    }
+
+//    @Override
+//    public int compareTo(Question o) {
+//        return this.getQuestionID().compareTo(o.getQuestionID());
+//    }
+
+    @NonNull
     @Override
-    public int compareTo(question o) {
-        return this.getQuestionID().compareTo(o.getQuestionID());
+    public String toString() {
+        return "Question{" +
+                "questionID='" + questionID + '\'' +
+                ", questionContent='" + questionContent + '\'' +
+                ", questionType='" + questionType + '\'' +
+                ", questionLevel='" + questionLevel + '\'' +
+                ", exactAnswer='" + exactAnswer + '\'' +
+                ", questionImage=" + questionImage +
+                '}';
     }
 }
