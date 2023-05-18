@@ -1,19 +1,5 @@
 <resources>
     <string name="app_name">QuizApp</string>
-
-    <string-array name="lits_lever">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-    </string-array>
-    <string-array name="lits_style">
-        <item>ABC</item>
-        <item>TEXT</item>
-    </string-array>
-
     <string name="close_app">Close app</string>
     <string name="dialog_message">AlertDialog</string>
     <string name="dialog_title">GBAndroidBlogs</string>
@@ -23,6 +9,10 @@
     <string name="okay">Okay</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="multiple_choice">"A multiple-choice question is a type of question that presents a statement or a question followed by a list of options from which the test-taker must choose the correct answer. The correct answer is usually denoted by a letter or a number. Multiple-choice questions are commonly used in exams and assessments to test a person's knowledge, understanding, or comprehension of a particular subject or topic. They are an effective way to measure learning outcomes and can cover a wide range of topics, from factual knowledge to higher-order thinking skills."</string>
+    <string name="sorting">"A sorting question is a type of question that requires the test-taker to arrange a set of items or information in a specific order according to a given criterion or rule. The items may be presented in a list or a table, and the criterion for sorting could be alphabetical order, numerical order, chronological order, or any other logical sequence. Sorting questions can help assess a person's ability to organize and categorize information, as well as their attention to detail and accuracy. They are commonly used in assessments, tests, and surveys to evaluate a person's cognitive and analytical skills."</string>
+    <string name="fill_in">"A fill-in-the-blank question is a type of question that presents a statement or a sentence with one or more missing words or phrases. The test-taker is required to fill in the blank(s) with the correct word or phrase that completes the sentence and makes it grammatically and semantically correct. Fill-in-the-blank questions can range from simple one-word answers to more complex responses requiring multiple words or even full sentences. They are commonly used in language assessments and tests to evaluate a person's understanding of grammar, vocabulary, and syntax."</string>
+    <string name="vocabulary">"A vocabulary question is a type of question that tests a person's knowledge and understanding of words and their meanings. It may present a word or a phrase, and the test-taker is required to select the correct definition or synonym from a list of options. Vocabulary questions can also require the test-taker to use a word or phrase in context by completing a sentence or providing the appropriate word for a given definition. Such questions are used to evaluate a person's vocabulary and comprehension skills, which are important for effective communication and reading comprehension."</string>
 
     <string name="exit">Do you want to leave this app?</string>
     <string name="delete">Are you sure you want to delete this item?</string>

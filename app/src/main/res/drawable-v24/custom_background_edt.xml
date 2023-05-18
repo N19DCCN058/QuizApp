@@ -8,5 +8,6 @@
         android:color="@color/lavender" />
     <corners
         android:radius="30dp" />
+    <solid android:color="@color/lavender"/>
 
 </shape>

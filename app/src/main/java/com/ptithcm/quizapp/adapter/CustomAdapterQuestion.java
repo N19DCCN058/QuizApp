@@ -4,7 +4,6 @@ import static android.database.sqlite.SQLiteDatabase.openOrCreateDatabase;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.ActionMode;
@@ -26,7 +25,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.ptithcm.quizapp.DetailQuestion;
+import com.ptithcm.quizapp.Main_Select_Level_Question_Get_Detail;
 import com.ptithcm.quizapp.R;
 import com.ptithcm.quizapp.database.DBHelper;
 import com.ptithcm.quizapp.model.Question;
@@ -60,7 +59,10 @@ public class CustomAdapterQuestion extends RecyclerView.Adapter<CustomAdapterQue
         View v = LayoutInflater.from(context).inflate(R.layout.item_question, parent, false);
         return new QSViewHolder(v);
     }
-
+    @Override
+    public int getItemCount() {
+        return data_filter == null ? 0 : data_filter.size();
+    }
     @Override
     public void onBindViewHolder(@NonNull QSViewHolder holder, int position) {
         Question qs = data_filter.get(position);
@@ -71,11 +73,10 @@ public class CustomAdapterQuestion extends RecyclerView.Adapter<CustomAdapterQue
         } else {
             holder.tvTitle.setText(qs.getQuestionContent());
         }
-        holder.tvLever.setText("Level " + qs.getQuestionLevel());
         holder.layoutItemQS.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, DetailQuestion.class);
+                Intent intent = new Intent(context, Main_Select_Level_Question_Get_Detail.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("questionID", qs.getQuestionID());
                 intent.putExtras(bundle);
@@ -93,7 +94,7 @@ public class CustomAdapterQuestion extends RecyclerView.Adapter<CustomAdapterQue
                             @Override
                             public boolean onCreateActionMode(ActionMode mode, Menu menu) {
                                 MenuInflater menuInflater = mode.getMenuInflater();
-                                menuInflater.inflate(R.menu.menu_qs_selected, menu);
+                                menuInflater.inflate(R.menu.menu_delete_question_selected, menu);
                                 
                                 return true;
                             }
@@ -155,14 +156,10 @@ public class CustomAdapterQuestion extends RecyclerView.Adapter<CustomAdapterQue
         }
     }
 
-    @Override
-    public int getItemCount() {
-        return data_filter.size();
-    }
 
     public class QSViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tvNumbId, tvTitle, tvLever;
+        TextView tvNumbId, tvTitle;
         LinearLayout layoutItemQS;
         boolean isSelected;
 
@@ -171,7 +168,6 @@ public class CustomAdapterQuestion extends RecyclerView.Adapter<CustomAdapterQue
 
             tvNumbId = itemView.findViewById(R.id.tvNumbId);
             tvTitle = itemView.findViewById(R.id.tvTitle);
-            tvLever = itemView.findViewById(R.id.tvLever);
             layoutItemQS = itemView.findViewById(R.id.layoutItemQS);
             isSelected = false;
         }
@@ -224,7 +220,7 @@ public class CustomAdapterQuestion extends RecyclerView.Adapter<CustomAdapterQue
     }
 
     public void showSuccessDialog(String mess) {
-        View view = LayoutInflater.from(context).inflate(R.layout.layout_success_dailog, null);
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_notify_uccess, null);
         setControl(view);
         builder.setView(view);
 
@@ -244,12 +240,15 @@ public class CustomAdapterQuestion extends RecyclerView.Adapter<CustomAdapterQue
                 alertDialog.dismiss();
             }
         });
+        if (alertDialog.getWindow() != null) {
+            alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+        }
         alertDialog.show();
 
     }
 
     public void showWarningDialog(String mess) {
-        View view = LayoutInflater.from(context).inflate(R.layout.layout_warning_dailog, null);
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_notify_warning, null);
         setControl(view);
         builder.setView(view);
         textTitle.setText(context.getResources().getString(R.string.warning));
@@ -300,7 +299,7 @@ public class CustomAdapterQuestion extends RecyclerView.Adapter<CustomAdapterQue
 
 
     public void showErrorDialog(String mess) {
-        View view = LayoutInflater.from(context).inflate(R.layout.layout_error_dailog, null);
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_notify_error, null);
         builder.setView(view);
         setControl(view);
         textTitle.setText(context.getResources().getString(R.string.error));

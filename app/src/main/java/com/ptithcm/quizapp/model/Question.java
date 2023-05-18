@@ -9,15 +9,13 @@ import java.io.Serializable;
 public class Question implements Serializable {
     public String questionID;
     public String questionContent;
-    public String questionType;
     public String questionLevel;
     public String exactAnswer;
     public Bitmap questionImage;
 
-    public Question(String questionID, String questionContent, String questionType, String questionLevel, String exactAnswer, Bitmap questionImage) {
+    public Question(String questionID, String questionContent, String questionLevel, String exactAnswer, Bitmap questionImage) {
         this.questionID = questionID;
         this.questionContent = questionContent;
-        this.questionType = questionType;
         this.questionLevel = questionLevel;
         this.exactAnswer = exactAnswer;
         this.questionImage = questionImage;
@@ -34,9 +32,6 @@ public class Question implements Serializable {
         return questionContent;
     }
 
-    public String getQuestionType() {
-        return questionType;
-    }
 
     public String getQuestionLevel() {
         return questionLevel;
@@ -54,9 +49,6 @@ public class Question implements Serializable {
         this.questionContent = questionContent;
     }
 
-    public void setQuestionType(String questionType) {
-        this.questionType = questionType;
-    }
 
     public void setQuestionLevel(String questionLevel) {
         this.questionLevel = questionLevel;
@@ -85,7 +77,6 @@ public class Question implements Serializable {
         return "Question{" +
                 "questionID='" + questionID + '\'' +
                 ", questionContent='" + questionContent + '\'' +
-                ", questionType='" + questionType + '\'' +
                 ", questionLevel='" + questionLevel + '\'' +
                 ", exactAnswer='" + exactAnswer + '\'' +
                 ", questionImage=" + questionImage +

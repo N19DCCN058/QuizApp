@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/layoutItemQS"
+    android:id="@+id/layoutItemLV"
     android:layout_width="match_parent"
     android:layout_height="80dp"
+    android:layout_marginTop="10dp"
     android:layout_marginEnd="10dp"
     android:layout_marginBottom="10dp"
     android:background="@drawable/custom_background_item_qs"
@@ -21,31 +22,34 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tvTitle"
+                android:id="@+id/tvTitleLevel"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="15dp"
-                android:layout_toEndOf="@+id/tvNumbId"
                 android:text="Nguyen Van Hieu"
                 android:textColor="@color/black"
                 android:textSize="24sp" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/tvNumbId"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="15dp"
-            android:background="@drawable/custom_background_item_qs_id"
-            android:gravity="center"
-            android:text="#1"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            android:textStyle="bold|italic" />
-    </FrameLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center">
 
+            <ImageView
+                android:id="@+id/imgEditLevel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_edit_24" />
+
+            <ImageView
+                android:id="@+id/imgDeleteLevel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_delete_24" />
+        </LinearLayout>
+
+    </FrameLayout>
 </LinearLayout>
